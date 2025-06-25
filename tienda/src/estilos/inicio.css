@@ -1,0 +1,160 @@
+.carousel {
+    position: relative;
+    width: 78%;
+    height: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+    display: flex;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #ccc;
+}
+
+.carousel-image {
+    width: 100%;
+    min-width: 100%;
+    height: 100%;
+}
+
+
+
+.carousel-images-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out; 
+    width: calc(100% * 4); 
+}
+
+
+
+.prev,
+.next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.inicio{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.texto{
+    display: flex;
+    flex-direction: column;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 20px;
+    margin: 0px;
+    margin-bottom: 8px;
+    
+}
+
+.texto .titulo{
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.productos-destacados{
+    padding: 20px;
+    gap: 80px;
+    display: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    font-size: 17px;
+    align-items: center;
+    justify-content: center;
+}
+
+.productos-destacados .imagen{
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 8px solid #000000;
+}
+
+.productos-destacados .descripcionProductoDestacado{
+    width: 900px;
+    float: right;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4%;
+    text-align: justify;
+}
+
+.productos-destacados .imagen2{
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 8px solid #000000;
+    margin-top: 20px;
+   
+}
+
+.productos-destacados .producto2{
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+}
+
+.productos-destacados .producto2 .descripcionProductoDestacado2{
+    width: 900px;
+    align-items: center;
+    margin-right: 80px;
+    text-align: justify;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.productos-destacados .imagen3{
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    border: 8px solid #000000;
+    margin-top: 20px;
+}
+
+.productos-destacados .producto3{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.productos-destacados .producto3 .descripcionProductoDestacado3{
+    width: 900px;
+    align-items: center;
+    margin-left: 80px;
+    text-align: justify;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}

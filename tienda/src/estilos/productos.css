@@ -1,0 +1,62 @@
+.productos img {
+  width: 150px;
+  height: 150px;
+  border-radius: 18px;
+  background-color: white;
+  background-size: cover;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.productos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-wrap: wrap;
+}
+    
+
+.productos h1 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.producto{
+    display: flex;
+    margin: 10px;
+    padding: 10px;
+    gap: 30px;
+    border-radius: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    justify-content: center;
+}
+
+.producto-item{
+    width: 280px;
+    height: 400px;
+    border: 1px solid #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background-color: darkgray;
+    background: linear-gradient(to bottom left, #000000, #454b6fa8);
+    gap: 10px;
+  }
+
+.botones button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    background-color: transparent;
+    width: 180px;
+    cursor: pointer;
+    border: 1px solid #000000;
+    border-radius: 8px;
+    background-color:green;
+  }

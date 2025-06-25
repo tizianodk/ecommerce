@@ -1,0 +1,95 @@
+.carrousel img{
+    width: 400px;
+    height: 400px;
+}
+
+.producto-detalle{
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 150px;
+} 
+.producto-detalle .contenedor-detalle{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-items: auto;
+    
+}
+.producto-detalle p{
+    width: 400px;
+    text-align:justify;
+}
+
+.producto-detalle .contenedor-opiniones{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.producto-detalle .contenedor-opiniones h3{
+    text-align: center;
+}
+
+.producto-detalle .contenedor-opiniones textarea {
+    width: 400px;
+    height: 100px;
+    margin: 10px auto;
+    background-color: transparent;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 16px;
+    color: black;
+    border: 2px solid #ccc;
+}
+
+.producto-detalle .contenedor-opiniones button{
+    width: 100px;
+    height: 50px;
+    margin: 10px auto;
+}
+
+.producto-detalle .contenedor-opiniones{
+    border: 2px solid #ccc;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    color: black;
+    
+}
+
+
+.producto-detalle .contenedor-valoracion .resenas-carrusel {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    width: auto;
+    color: black;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    height: 200px;
+}
+
+.producto-detalle .contenedor-valoracion .resena {
+    text-align: justify; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #ffffff;
+    word-wrap: break-word; 
+    overflow-wrap: break-word; 
+}
+
+.producto-detalle .contenedor-valoracion {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px ;
+    color: black;
+}
