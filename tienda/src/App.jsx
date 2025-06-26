@@ -14,6 +14,7 @@ import Resultado from './componentes/resultado.jsx';
 import OrdenHistorial from './componentes/historial.jsx';
 
 function App() {
+    const API_URL = import.meta.env.VITE_API_URL;
     const [carrito, setCarrito] = useState([]);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [rol, setRol] = useState(null);
@@ -63,7 +64,7 @@ function App() {
                 setError(null);
                 
                 const token = localStorage.getItem("token"); 
-                const response = await fetch("http://localhost:3000/productos", {
+                const response = await fetch(`${API_URL}/productos`, {
                     method: "GET",
                     headers: {
                         ...(token && { Authorization: `Bearer ${token}` }),
