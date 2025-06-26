@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
 
 console.log(process.env.STRIPE_SECRET_KEY)
 exports.getAllUsers = async (req,res)=>{
@@ -87,8 +88,8 @@ exports.pago = async (req, res) => {
         quantity: item.cantidad,
       })),
       mode: "payment",
-      success_url: "https://ecommerce-5yy8.vercel.app/success?status=success&session_id={CHECKOUT_SESSION_ID}",
-      cancel_url: "https://ecommerce-5yy8.vercel.app/cancel?status=cancel",
+      success_url: `${CLIENT_URL}/success?status=success&session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${CLIENT_URL}/cancel?status=cancel`,
       customer_email: req.user?.email || undefined, // email del cliente
       metadata: {
         userId: req.userId, 
