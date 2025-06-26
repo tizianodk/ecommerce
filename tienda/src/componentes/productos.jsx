@@ -165,7 +165,7 @@ function Productos() {
                                 {/* Imagen del producto */}
                                 <div className="relative aspect-square bg-gray-100 overflow-hidden">
                                     <img 
-                                        src={`/uploads/${producto.imagen}`} 
+                                        src={`${API_URL}/uploads/${producto.imagen}`} 
                                         alt={producto.nombre}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />
