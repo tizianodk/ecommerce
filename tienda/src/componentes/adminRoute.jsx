@@ -3,6 +3,8 @@ import { Navigate } from "react-router-dom";
 import { AlertCircle, Shield, Loader } from "lucide-react";
 
 const AdminRoute = ({ children }) => {
+  
+  const API_URL = import.meta.env.VITE_API_URL;
   const [isValidating, setIsValidating] = useState(true);
   const [isAuthorized, setIsAuthorized] = useState(false);
   const [error, setError] = useState("");
@@ -32,7 +34,7 @@ const AdminRoute = ({ children }) => {
 
       // Validar token con el servidor (opcional pero recomendado)
       try {
-        const response = await fetch("http://localhost:3000/auth/validate", {
+        const response = await fetch(`${API_URL}/auth/validate`, {
           method: "GET",
           headers: {
             "Authorization": `Bearer ${token}`,

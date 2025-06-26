@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 function Productos() {
+    const API_URL = import.meta.env.VITE_API_URL;
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -15,7 +16,7 @@ function Productos() {
         const fetchProductos = async () => {
             try {
                 setLoading(true);
-                const response = await fetch("http://localhost:3000/productos");
+                const response = await fetch(`${API_URL}/productos`);
                 
                 if (!response.ok) {
                     throw new Error("Error en la respuesta de la API");
@@ -164,7 +165,7 @@ function Productos() {
                                 {/* Imagen del producto */}
                                 <div className="relative aspect-square bg-gray-100 overflow-hidden">
                                     <img 
-                                        src={`http://localhost:3000/uploads/${producto.imagen}`} 
+                                        src={`/uploads/${producto.imagen}`} 
                                         alt={producto.nombre}
                                         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                     />

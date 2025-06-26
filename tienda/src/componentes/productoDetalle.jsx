@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 
 function ProductoDetalle({ productos, agregarAlCarrito }) {
+    const API_URL = import.meta.env.VITE_API_URL;
     const { id } = useParams();
     const navigate = useNavigate();
     const [resenas, setResenas] = useState([]);
@@ -13,7 +14,7 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
     useEffect(() => {
         const fetchResenas = async () => {
             try {
-                const response = await fetch(`http://localhost:3000/productos/${id}/resenas`);
+                const response = await fetch(`${API_URL}/productos/${id}/resenas`);
                 if (!response.ok) {
                     throw new Error("Error al obtener las resenas");
                 }
@@ -82,7 +83,7 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
 
         setLoading(true);
         try {
-            const response = await fetch(`http://localhost:3000/productos/${id}/resenas`, {
+            const response = await fetch(`${API_URL}/productos/${id}/resenas`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -143,7 +144,7 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
                         <div className="space-y-4">
                             <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
                                 <img 
-                                    src={`http://localhost:3000/uploads/${imagenes[imagenActual]}`} 
+                                    src={`${API_URL}/uploads/${imagenes[imagenActual]}`} 
                                     alt={producto.nombre}
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 />
@@ -160,7 +161,7 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
                                             }`}
                                         >
                                             <img 
-                                                src={`http://localhost:3000/uploads/${imagen}`} 
+                                                src={`${API_URL}/uploads/${imagen}`} 
                                                 alt={`Vista ${index + 1}`}
                                                 className="w-full h-full object-cover"
                                             />

@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Trash2, Plus, Minus, ShoppingCart, CreditCard } from "lucide-react";
 
 function Carrito({ carrito, setCarrito }) {
+  const API_URL = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [mostrarConfirmacion, setMostrarConfirmacion] = useState(null);
   const [animandoItem, setAnimandoItem] = useState(null);
@@ -149,7 +150,7 @@ function Carrito({ carrito, setCarrito }) {
                       {/* Imagen del producto */}
                       <div className="flex-shrink-0">
                         <img
-                          src={`http://localhost:3000/uploads/${item.imagen}`}
+                          src={`${API_URL}/uploads/${item.imagen}`}
                           alt={item.nombre}
                           className="w-20 h-20 object-cover rounded-lg"
                         />

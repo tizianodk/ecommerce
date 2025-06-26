@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, LogIn } from 'lucide-react';
 
 function Login({ setIsAuthenticated, setRol }) {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +21,7 @@ function Login({ setIsAuthenticated, setRol }) {
     setIsLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3000/usuarios/login", {
+      const response = await fetch(`${API_URL}/usuarios/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

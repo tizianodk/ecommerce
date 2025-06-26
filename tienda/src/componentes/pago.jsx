@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 function Pago({ carrito }) {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const token = localStorage.getItem("token");
@@ -24,7 +25,7 @@ function Pago({ carrito }) {
     const crearSesionPago = async () => {
       try {
         setLoading(true);
-        const response = await fetch("http://localhost:3000/usuarios/pago", {
+        const response = await fetch(`${API_URL}/usuarios/pago`, {
           method: "POST",
           headers: {
             Authorization: `Bearer ${token}`,

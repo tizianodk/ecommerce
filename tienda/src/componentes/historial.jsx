@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 const OrdenHistorial = () => {
+  const API_URL = import.meta.env.VITE_API_URL;
   const [ordenes, setOrdenes] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +18,7 @@ const OrdenHistorial = () => {
       setLoading(true);
       setError(null);
       
-      const response = await axios.get("http://localhost:3000/ordenes");
+      const response = await axios.get(`${API_URL}/ordenes`);
       const data = Array.isArray(response.data) ? response.data : response.data.ordenes || [];
       
       setOrdenes(data);

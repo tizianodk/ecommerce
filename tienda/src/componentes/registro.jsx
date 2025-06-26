@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Registro() {
+    const API_URL = import.meta.env.VITE_API_URL;
     const [formData, setFormData] = useState({
         nombre: '',
         apellido: '',
@@ -25,7 +26,7 @@ function Registro() {
         setIsLoading(true);
         
         try {
-            const response = await fetch("http://localhost:3000/usuarios/register", {
+            const response = await fetch(`${API_URL}/usuarios/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams, useNavigate } from "react-router-dom";
 
 function Resultado({setCarrito}) {
+    const API_URL = import.meta.env.VITE_API_URL;
     const [searchParams] = useSearchParams();
     const [recibo, setRecibo] = useState(null);
     const [error, setError] = useState(null);
@@ -22,7 +23,7 @@ function Resultado({setCarrito}) {
         if (status === "success" && sessionId) {
             const obtenerRecibo = async () => {
                 try {
-                    const response = await fetch(`http://localhost:3000/usuarios/recibo/${sessionId}`);
+                    const response = await fetch(`${API_URL}/usuarios/recibo/${sessionId}`);
                     if (!response.ok) {
                         throw new Error("Error al obtener el recibo");
                     }

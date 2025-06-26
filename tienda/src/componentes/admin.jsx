@@ -11,6 +11,7 @@ const AdminPanel = () => {
     imagen: null,
   });
 
+  const API_URL = import.meta.env.VITE_API_URL;
   const [productos, setProductos] = useState([]);
   const [modoEdicion, setModoEdicion] = useState(false);
   const [idEditando, setIdEditando] = useState(null);
@@ -38,7 +39,7 @@ const AdminPanel = () => {
   const fetchProductos = async () => {
     setLoading(true);
     try {
-      const res = await fetch("http://localhost:3000/productos");
+      const res = await fetch(`${API_URL}/productos`);
       if (!res.ok) throw new Error(`Error ${res.status}: ${res.statusText}`);
       const data = await res.json();
       setProductos(Array.isArray(data) ? data : []);
@@ -152,8 +153,8 @@ const AdminPanel = () => {
     }
 
     const url = modoEdicion
-      ? `http://localhost:3000/productos/editar/${idEditando}`
-      : "http://localhost:3000/productos";
+      ? `${API_URL}/productos/editar/${idEditando}`
+      : `${API_URL}/productos`;
     const method = modoEdicion ? "PUT" : "POST";
 
     const token = localStorage.getItem("token");
@@ -202,7 +203,7 @@ const AdminPanel = () => {
     const token = localStorage.getItem("token");
     
     try {
-      const res = await fetch(`http://localhost:3000/productos/${id}`, {
+      const res = await fetch(`${API_URL}/productos/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -324,7 +325,7 @@ const AdminPanel = () => {
                   <div className="mb-4 p-4 bg-gray-50 rounded-lg">
                     <p className="text-sm text-gray-600 mb-2">Imagen actual:</p>
                     <img
-                      src={`http://localhost:3000/uploads/${imagenActual}`}
+                      src={`${API_URL}/uploads/${imagenActual}`}
                       alt="Imagen actual"
                       className="w-24 h-24 object-cover rounded-lg mx-auto"
                     />
@@ -422,7 +423,7 @@ const AdminPanel = () => {
                     <div className="flex gap-4">
                       {producto.imagen && (
                         <img
-                          src={`http://localhost:3000/uploads/${producto.imagen}`}
+                          src={`${API_URL}/uploads/${producto.imagen}`}
                           alt={producto.nombre}
                           className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
                         />
