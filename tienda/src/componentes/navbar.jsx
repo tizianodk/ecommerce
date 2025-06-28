@@ -80,7 +80,7 @@ function NavBar({isAuthenticated, handleLogout, rol, carritoItems}){
                                     className="text-gray-300 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 flex items-center hover:bg-white/10 backdrop-blur-sm"
                                 >
                                     <Home className="h-4 w-4 mr-2" />
-                                    Inicioooooooooooooooo
+                                    Inicio
                                 </Link>
 
                                 {isAuthenticated && rol === "admin" && (
