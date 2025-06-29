@@ -28,10 +28,10 @@ server.use("/productos", productRoutes);
 server.use("/ordenes", ordenRoutes);
 server.use("/resenas", resenasRoutes);
 
-// Conexión a MongoDB Atlas
+
 mongoose.connect(process.env.MONGO_URL)
   .then(() => console.log("✅ Conectado a MongoDB Atlas"))
-  .catch((err) => console.error("❌ Error conectando a MongoDB:", err));
+  .catch((err) => console.error("❌ Error al intentar conectar a MongoDB Atlas:", err));
 
 // Puerto dinámico (para Render)
 const PORT = process.env.PORT || 3000;
