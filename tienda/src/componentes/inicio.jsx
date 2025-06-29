@@ -34,7 +34,7 @@ function Inicio() {
 
     const productosDestacados = [
         {
-            id: '685cbd2c0760d1712a378ff2',
+            id: '68608ee8332c00126ce3b4e5',
             imagen: gabinete,
             nombre: "Gabinete Gamer RGB",
             categoria: "PC Gaming",
@@ -51,7 +51,7 @@ function Inicio() {
             caracteristicas: ["Vidrio templado", "RGB personalizable", "Gestión de cables", "Filtros antipolvo"]
         },
         {
-            id: '685cbde80760d1712a379001',
+            id: '68608ec5332c00126ce3b4df',
             imagen: placavideo,
             nombre: "Placa de Video",
             categoria: "Componentes",
@@ -67,7 +67,7 @@ function Inicio() {
             caracteristicas: ["4K Gaming", "Ray Tracing", "DLSS 3.0", "Refrigeración silenciosa"]
         },
         {
-            id: '685cbe060760d1712a379006',
+            id: '68608ea8332c00126ce3b4db',
             imagen: auricular,
             nombre: "Auricular Gamer",
             categoria: "Periféricos",
