@@ -146,7 +146,7 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
                                 <img 
 //dsadsad
 //src={`${API_URL}/uploads/${imagenes[imagenActual]}`} 
-                                    src={imagenes[imagenActual]}
+                                    src={producto.imagen}
                                     alt={producto.nombre}
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 />
