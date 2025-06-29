@@ -30,7 +30,7 @@ router.get(
         `https://ecommerce-5yy8.vercel.app/?token=${token}&user=${encodeURIComponent(
         JSON.stringify(req.user)
       )}`
-    )
+    );
     }
 );
 
