@@ -20,6 +20,7 @@ passport.use(
             nombre: profile.displayName,
             email: profile.emails[0].value,
             googleId: profile.id,
+            picture: profile.photos[0].value,
             rol: "cliente", // Por defecto, rol de cliente
           });
 
