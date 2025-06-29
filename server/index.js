@@ -38,7 +38,7 @@ server.use("/resenas", resenasRoutes);
 // Configurar sesiones
 server.use(
   session({
-    secret: "secreto", // Cambiar por una variable de entorno en producción
+    secret: process.env.SESSION_SECRET, // Cambiar por una variable de entorno en producción
     resave: false,
     saveUninitialized: false,
   })
