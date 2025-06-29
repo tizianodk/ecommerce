@@ -42,11 +42,11 @@ function App() {
     useEffect(() => {
         const verificarAutenticacion = () => {
             const token = localStorage.getItem("token");
-            const rolGuardado = localStorage.getItem("rol");
-    
-            if (token && rolGuardado) {
+            const userData = localStorage.getItem("user");
+        
+            if (token && userData) {
                 setIsAuthenticated(true);
-                setRol(rolGuardado);
+                setRol(JSON.parse(userData).rol); // Extraer el rol del usuario
             } else {
                 setIsAuthenticated(false);
                 setRol(null);
@@ -55,19 +55,25 @@ function App() {
     
         verificarAutenticacion();
     }, []);
-
+    
     useEffect(() => {
         const params = new URLSearchParams(window.location.search);
         const userData = params.get("user");
         const token = params.get("token");
-      
+    
         if (userData && token) {
-          localStorage.setItem("user", userData);
-          localStorage.setItem("token", token);
-          setIsAuthenticated(true); // Actualizar el estado de autenticación
-          setRol(JSON.parse(userData).rol); // Actualizar el rol del usuario
+            // Guardar datos en localStorage
+            localStorage.setItem("user", userData);
+            localStorage.setItem("token", token);
+        
+            // Actualizar el estado global
+            setIsAuthenticated(true);
+            setRol(JSON.parse(userData).rol); // Extraer el rol del usuario
+        
+            // Limpiar los parámetros de la URL
+            window.history.replaceState({}, document.title, "/");
         }
-      }, []);
+    }, []);
 
     // Cargar productos
     useEffect(() => {
