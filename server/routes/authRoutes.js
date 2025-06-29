@@ -42,7 +42,7 @@ router.post("/google/callback", async (req, res) => {
     });
 
     const payload = ticket.getPayload();
-    const { sub, email, name } = payload;
+    const { sub, email, name, picture } = payload;
 
     // Buscar o crear usuario en la base de datos
     let user = await User.findOne({ googleId: sub });
@@ -51,6 +51,7 @@ router.post("/google/callback", async (req, res) => {
         nombre: name,
         email,
         googleId: sub,
+        picture,
         rol: "cliente",
       });
       await user.save();
