@@ -6,6 +6,10 @@ const bodyParser = require("body-parser");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const User = require("./models/user.js"); // Importar el modelo de usuario
 const bcrypt = require("bcrypt");
+const session = require("express-session");
+const passport = require("passport");
+require("./passportConfig"); // Configuración de Passport
+
 
 
 // Rutas
@@ -30,6 +34,26 @@ server.use("/usuarios", userRoutes);
 server.use("/productos", productRoutes);
 server.use("/ordenes", ordenRoutes);
 server.use("/resenas", resenasRoutes);
+
+// Configurar sesiones
+server.use(
+  session({
+    secret: "secreto", // Cambiar por una variable de entorno en producción
+    resave: false,
+    saveUninitialized: false,
+  })
+);
+
+
+
+// Inicializar Passport
+server.use(passport.initialize());
+server.use(passport.session());
+
+// Rutas de autenticación
+const authRoutes = require("./routes/authRoutes.js");
+server.use("/auth", authRoutes);
+
 
 
 // Crear un usuario administrador por defecto si no existe
