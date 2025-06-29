@@ -26,7 +26,7 @@ router.get(
     );
 
     // Redirigir al cliente con el token al frontend en Vercel
-    res.redirect(`https://ecommerce-5yy8.vercel.app/?token=${token}`);
+    res.redirect(`https://ecommerce-5yy8.vercel.app/?token=${token}&picture=${req.user.picture}`);
   }
 );
 
