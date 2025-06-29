@@ -4,6 +4,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
+const User = require("./models/user.js"); // Importar el modelo de usuario
+const bcrypt = require("bcrypt");
+
 
 // Rutas
 const userRoutes = require("./routes/userRoutes.js");
@@ -27,6 +30,35 @@ server.use("/usuarios", userRoutes);
 server.use("/productos", productRoutes);
 server.use("/ordenes", ordenRoutes);
 server.use("/resenas", resenasRoutes);
+
+
+// Crear un usuario administrador por defecto si no existe
+const crearAdminPorDefecto = async () => {
+  try {
+    const adminExistente = await User.findOne({ rol: "admin" });
+
+    if (!adminExistente) {
+      const hashedPassword = await bcrypt.hash("admin123", 10); // Contraseña encriptada
+      const admin = new User({
+        nombre: "Admin",
+        apellido: "Default",
+        email: "admin@tienda.com",
+        password: hashedPassword,
+        rol: "admin",
+      });
+
+      await admin.save();
+      console.log("✅ Usuario administrador creado por defecto");
+    } else {
+      console.log("✅ Usuario administrador ya existe");
+    }
+  } catch (err) {
+    console.error("❌ Error al crear el usuario administrador por defecto:", err);
+  }
+};
+
+// Llamar a la función al iniciar el servidor
+crearAdminPorDefecto();
 
 
 mongoose.connect(process.env.MONGO_URL)
