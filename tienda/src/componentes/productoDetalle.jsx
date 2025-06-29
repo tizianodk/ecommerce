@@ -144,7 +144,8 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
                         <div className="space-y-4">
                             <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
                                 <img 
-                                    //src={`${API_URL}/uploads/${imagenes[imagenActual]}`} 
+//dsadsad
+//src={`${API_URL}/uploads/${imagenes[imagenActual]}`} 
                                     src={imagenes[imagenActual]}
                                     alt={producto.nombre}
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
