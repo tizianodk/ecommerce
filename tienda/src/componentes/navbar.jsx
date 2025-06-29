@@ -129,14 +129,14 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                 ) : (
                                     <div className="flex items-center space-x-4">
                                         {user?.picture ? (
-    <img
-        src={user.picture}
-        alt="Foto de perfil"
-        className="h-10 w-10 rounded-full border-2 border-white"
-    />
-) : (
-    <User className="h-10 w-10 text-gray-400" />
-)}
+                                            <img
+                                                src={user.picture}
+                                                alt="Foto de perfil"
+                                                className="h-10 w-10 rounded-full border-2 border-white"
+                                            />
+                                        ) : (
+                                            <User className="h-10 w-10 text-gray-400" />
+                                        )}
                                         <button 
                                             onClick={handleLogoutAndRedirect}
                                             className="bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 flex items-center shadow-lg hover:scale-105 transform"
