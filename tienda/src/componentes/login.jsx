@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, LogIn } from 'lucide-react';
+import InicioSesionConGoogle from './inicioSesionConGoogle.jsx'
 
 function Login({ setIsAuthenticated, setRol }) {
   const API_URL = import.meta.env.VITE_API_URL;
@@ -133,6 +134,7 @@ function Login({ setIsAuthenticated, setRol }) {
               </>
             )}
           </button>
+            <InicioSesionConGoogle/>
         </form>
 
         {message && (
