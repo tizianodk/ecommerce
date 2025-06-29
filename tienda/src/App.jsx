@@ -56,6 +56,19 @@ function App() {
         verificarAutenticacion();
     }, []);
 
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const userData = params.get("user");
+        const token = params.get("token");
+      
+        if (userData && token) {
+          localStorage.setItem("user", userData);
+          localStorage.setItem("token", token);
+          setIsAuthenticated(true); // Actualizar el estado de autenticación
+          setRol(JSON.parse(userData).rol); // Actualizar el rol del usuario
+        }
+      }, []);
+
     // Cargar productos
     useEffect(() => {
         const fetchProductos = async () => {
@@ -109,6 +122,8 @@ function App() {
             localStorage.removeItem('carrito');
         }
     }, [carrito]);
+
+    
 
     const handleLogout = () => {
         setIsAuthenticated(false);
