@@ -144,7 +144,8 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
                         <div className="space-y-4">
                             <div className="aspect-square bg-gray-100 rounded-xl overflow-hidden">
                                 <img 
-                                    src={`${API_URL}/uploads/${imagenes[imagenActual]}`} 
+                                    //src={`${API_URL}/uploads/${imagenes[imagenActual]}`} 
+                                    src={imagenes[imagenActual]}
                                     alt={producto.nombre}
                                     className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
                                 />
@@ -161,7 +162,7 @@ function ProductoDetalle({ productos, agregarAlCarrito }) {
                                             }`}
                                         >
                                             <img 
-                                                src={`${API_URL}/uploads/${imagen}`} 
+                                                src={imagen} 
                                                 alt={`Vista ${index + 1}`}
                                                 className="w-full h-full object-cover"
                                             />

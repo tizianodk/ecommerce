@@ -325,7 +325,7 @@ const AdminPanel = () => {
                   <div className="mb-4 p-4 bg-gray-50 rounded-lg">
                     <p className="text-sm text-gray-600 mb-2">Imagen actual:</p>
                     <img
-                      src={`${API_URL}/uploads/${imagenActual}`}
+                      src={imagenActual}
                       alt="Imagen actual"
                       className="w-24 h-24 object-cover rounded-lg mx-auto"
                     />
@@ -423,7 +423,7 @@ const AdminPanel = () => {
                     <div className="flex gap-4">
                       {producto.imagen && (
                         <img
-                          src={`${API_URL}/uploads/${producto.imagen}`}
+                          src={producto.imagen}
                           alt={producto.nombre}
                           className="w-16 h-16 object-cover rounded-lg flex-shrink-0"
                         />
