@@ -19,7 +19,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
     const [showModal, setShowModal] = useState(false);
     const [modalContent, setModalContent] = useState(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [user, setUser] = useState(null); // Cambiado de "use" a "user"
+    const [user, setUser] = useState(null); 
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -33,7 +33,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
         // Eliminar la información del usuario y el token al cerrar sesión
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        window.location.href = "/"; // Redirigir al inicio
+        navigate('/') // Redirigir al inicio
     };
 
     const handleOpenModal = (content) => {
