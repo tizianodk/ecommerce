@@ -1,6 +1,7 @@
 const User = require("../models/user.js")
 const mongoose = require("mongoose")
 const jwt = require('jsonwebtoken');
+const bcrypt = require("bcrypt");
 require('dotenv').config();
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const CLIENT_URL = process.env.CLIENT_URL || "http://localhost:5173";
@@ -18,40 +19,45 @@ exports.getAllUsers = async (req,res)=>{
         console.log("se econtro un error")
     }
 }
-exports.Register = async(req,res)=>{
+exports.Register = async (req, res) => {
+  try {
+    const { nombre, apellido, email, password, rol } = req.body;
 
-    try{
-       
-        const {nombre,apellido,email,password,rol} = req.body
-        const nuevoU = await new User({nombre,apellido,email,password,  rol: rol || "cliente"})
-        nuevoU.save()
-        res.status(201).json({ message: "Usuario registrado con éxito" });
+    // Encriptar la contraseña
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    }
-    catch(err){
-        console.log("ocurrio un error",err)
-    }
-}
-exports.Login = async(req,res)=>{
-    try{
-       
-        const {email,password} = req.body
-        const user = await User.findOne({email})
+    const nuevoU = new User({
+      nombre,
+      apellido,
+      email,
+      password: hashedPassword, // Guardar la contraseña encriptada
+      rol: rol || "cliente",
+    });
+
+    await nuevoU.save();
+    res.status(201).json({ message: "Usuario registrado con éxito" });
+  } catch (err) {
+    console.log("Ocurrió un error", err);
+    res.status(500).json({ error: "Error al registrar el usuario" });
+  }
+};
+exports.Login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(404).json({ message: "Usuario no encontrado" });
     }
 
-    if(user.email !== email){
-        return res.status(401).json({ message: "Email incorrecto" });
+    // Comparar la contraseña ingresada con la encriptada
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ message: "Contraseña incorrecta" });
     }
-    
-    if(user.password !== password){
-        return res.status(401).json({ message: "Contrasena incorrecta" });
-    }   
-   
 
-const token = jwt.sign(
+    const token = jwt.sign(
       { id: user._id, rol: user.rol },
       process.env.JWT_SECRET,
       { expiresIn: process.env.JWT_EXPIRES_IN }
@@ -63,14 +69,15 @@ const token = jwt.sign(
         id: user._id,
         nombre: user.nombre,
         email: user.email,
-        rol: user.rol        
-      }
+        rol: user.rol,
+      },
     });
+  } catch (err) {
+    console.log("Ocurrió un error", err);
+    res.status(500).json({ error: "Error al iniciar sesión" });
   }
-catch(err){
-    console.log("ocurrio un error" +err)
-}
-}
+};
+
 exports.pago = async (req, res) => {
   try {
     const { items } = req.body;
