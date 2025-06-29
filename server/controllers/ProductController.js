@@ -7,25 +7,20 @@ exports.Post = async (req, res) => {
     const { nombre, precio, descripcion } = req.body;
 
     let imagenUrl = null;
-    if (req.file && req.file.path) {
-      imagenUrl = req.file.path; // este path es el secure_url que devuelve Cloudinary
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "productos"
+      });
+      imagenUrl = result.secure_url;
+      fs.unlinkSync(req.file.path); // elimina el archivo local
     }
 
-    const nuevoProducto = new producto({
-      nombre,
-      precio,
-      descripcion,
-      imagen: imagenUrl,
-    });
-
+    const nuevoProducto = new producto({ nombre, precio, descripcion, imagen: imagenUrl });
     await nuevoProducto.save();
 
-    res.status(201).json({
-      message: "Producto creado exitosamente",
-      producto: nuevoProducto,
-    });
+    res.status(201).json({ message: "Producto creado exitosamente", producto: nuevoProducto });
   } catch (err) {
-    console.error("💥 Error al crear el producto:", err);
+    console.error("Error al crear el producto:", err);
     res.status(500).json({ error: "Error al crear el producto" });
   }
 };
@@ -47,8 +42,12 @@ exports.put = async (req, res) => {
 
     const updateData = { nombre, precio, descripcion };
 
-    if (req.file && req.file.path) {
-      updateData.imagen = req.file.path;
+    if (req.file) {
+      const result = await cloudinary.uploader.upload(req.file.path, {
+        folder: "productos"
+      });
+      updateData.imagen = result.secure_url;
+      fs.unlinkSync(req.file.path);
     }
 
     const productoActualizado = await producto.findByIdAndUpdate(id, updateData, { new: true });
