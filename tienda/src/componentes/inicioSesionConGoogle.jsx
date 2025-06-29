@@ -29,12 +29,15 @@ const InicioSesionConGoogle = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Respuesta del backend:", data);
         localStorage.setItem("token", data.token); // Guardar el token en localStorage
         localStorage.setItem("user", JSON.stringify(data.user)); // Guardar la información del usuario
+        
+        setIsAuthenticated(true);
+        setRol(data.user.rol);
+        
         navigate("/"); // Redirigir al dashboard
       })
-      .catch((err) => console.error("Error al enviar el token al backend:", err));
+      .catch((err) => console.error("Error al iniciar sesion con Google:", err));
   };
 
   return <div id="google-signin-button"></div>;
