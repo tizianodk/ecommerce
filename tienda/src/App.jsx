@@ -21,6 +21,7 @@ function App() {
     const [productos, setProductos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [user, setUser] = useState(null);
     
     const location = useLocation();
     
@@ -47,9 +48,11 @@ function App() {
             if (token && userData) {
                 setIsAuthenticated(true);
                 setRol(JSON.parse(userData).rol); // Extraer el rol del usuario
+                setUser(JSON.parse(userData));
             } else {
                 setIsAuthenticated(false);
                 setRol(null);
+                setUser(null)
             }
         };
     
@@ -219,6 +222,7 @@ function App() {
                 handleLogout={handleLogout} 
                 rol={rol} 
                 carritoItems={carrito} 
+                user={user}
             />
             
             <main className="flex-grow">
@@ -245,6 +249,7 @@ function App() {
                             <Login 
                                 setIsAuthenticated={setIsAuthenticated} 
                                 setRol={setRol} 
+                                setUser={setUser}
                             />
                         }
                     />
