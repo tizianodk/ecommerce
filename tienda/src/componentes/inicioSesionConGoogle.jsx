@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const InicioSesionConGoogle = ({setIsAuthenticated, setRol}) => {
+const InicioSesionConGoogle = ({setIsAuthenticated, setRol, setUser}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,6 +38,7 @@ const InicioSesionConGoogle = ({setIsAuthenticated, setRol}) => {
       
           setIsAuthenticated(true);
           setRol(data.user.rol);
+          setUser(data.user)
       
           navigate("/"); // Redirigir al dashboard
         })
