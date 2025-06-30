@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import InicioSesionConGoogle from './inicioSesionConGoogle';
 
 function Registro() {
     const API_URL = import.meta.env.VITE_API_URL;
@@ -145,6 +146,7 @@ function Registro() {
                         ) : (
                             'Crear Cuenta'
                         )}
+                        <InicioSesionConGoogle/>
                     </button>
 
                     <div className="text-center space-y-4">
