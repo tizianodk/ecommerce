@@ -21,24 +21,27 @@ const InicioSesionConGoogle = ({setIsAuthenticated}) => {
     console.log("Token de Google:", response.credential);
     // Envía el token al backend para validarlo
     fetch("https://ecommerce-9o4q.onrender.com/auth/google/callback", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ token: response.credential }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        localStorage.setItem("token", data.token); // Guardar el token en localStorage
-        localStorage.setItem("user", JSON.stringify(data.user)); // Guardar la información del usuario
-        
-        setIsAuthenticated(true);
-        setRol(data.user.rol);
-        
-        navigate("/"); // Redirigir al dashboard
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ token: response.credential }),
       })
-      .catch((err) => console.error("Error al iniciar sesion con Google:", err));
-  };
+        .then((res) => {
+          console.log("Respuesta del backend:", res);
+          return res.json();
+        })
+        .then((data) => {
+          console.log("Datos procesados:", data);
+          localStorage.setItem("token", data.token); // Guardar el token en localStorage
+          localStorage.setItem("user", JSON.stringify(data.user)); // Guardar la información del usuario
+      
+          setIsAuthenticated(true);
+          setRol(data.user.rol);
+      
+          navigate("/"); // Redirigir al dashboard
+        })
+        .catch((err) => console.error("Error al iniciar sesion con Google:", err));};
 
   return <div id="google-signin-button"></div>;
 };
