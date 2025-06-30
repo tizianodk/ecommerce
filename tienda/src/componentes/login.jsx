@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { Eye, EyeOff, Mail, Lock, LogIn } from 'lucide-react';
 import InicioSesionConGoogle from './inicioSesionConGoogle.jsx'
 
-function Login({ setIsAuthenticated, setRol }) {
+function Login({ setIsAuthenticated, setRol, setUser }) {
   const API_URL = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
@@ -137,6 +137,7 @@ function Login({ setIsAuthenticated, setRol }) {
             <InicioSesionConGoogle
             setIsAuthenticated={setIsAuthenticated}
             setRol={setRol}
+            setUser={setUser}
             />
         </form>
 
