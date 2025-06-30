@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const InicioSesionConGoogle = ({setIsAuthenticated}) => {
+const InicioSesionConGoogle = ({setIsAuthenticated, setRol}) => {
   const navigate = useNavigate();
 
   useEffect(() => {
