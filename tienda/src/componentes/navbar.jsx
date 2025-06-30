@@ -44,7 +44,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
         handleLogout();
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        setUser(null);
+        setUser(null)
         navigate("/login");
         setIsMobileMenuOpen(false);
     };
@@ -129,14 +129,12 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                     </Link>
                                 ) : (
                                     <div className="flex items-center space-x-4">
-                                        {user?.picture ? (
+                                        {user?.picture && (
                                             <img
-                                                src={user.picture}
+                                                src={user.picture} // Mostrar la foto del usuario
                                                 alt="Foto de perfil"
                                                 className="h-10 w-10 rounded-full border-2 border-white"
                                             />
-                                        ) : (
-                                            <User className="h-10 w-10 text-gray-400" />
                                         )}
                                         <button 
                                             onClick={handleLogoutAndRedirect}
