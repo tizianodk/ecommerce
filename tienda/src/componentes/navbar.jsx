@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import carrito from '../imagenes/carrito1.png';
-import Registro from './registro';
-import Login from './login';
 import { Link, useNavigate } from 'react-router-dom';
 import Logo from '../imagenes/logo.png';
 import { 
@@ -16,10 +13,8 @@ import {
 } from 'lucide-react';
 
 function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
-    const [showModal, setShowModal] = useState(false);
-    const [modalContent, setModalContent] = useState(null);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [user, setUser] = useState(null); // Cambiado de "use" a "user"
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -29,26 +24,12 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
         }
     }, []);
 
-    const handleOpenModal = (content) => {
-        setModalContent(content);
-        setShowModal(true);
-    };
-
-    const handleCloseModal = () => {
-        setShowModal(false);
-        setModalContent(null);
-    };
-
     const handleLogoutAndRedirect = () => {
         localStorage.removeItem("token");
         localStorage.removeItem("user");
         handleLogout();
         navigate("/login");
-        setIsMobileMenuOpen(false);
-    };
-
-    const handleCarritoClick = () => {
-        navigate("/carrito");
+        setIsMobileMenuOpen(false); // Cerrar el menú móvil al cerrar sesión
     };
 
     const handleMobileMenuToggle = () => {
@@ -129,7 +110,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                     <div className="flex items-center space-x-4">
                                         {user?.picture && (
                                             <img
-                                                src={user.picture} // Mostrar la foto del usuario
+                                                src={user.picture}
                                                 alt="Foto de perfil"
                                                 className="h-10 w-10 rounded-full border-2 border-white"
                                             />
@@ -146,35 +127,97 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                             </div>
                         </div>
 
-                        {/* Right side - Cart and Mobile Menu */}
-                        <div className="flex items-center space-x-4">
-                            {/* Cart Button */}
-                            <button 
-                                onClick={handleCarritoClick}
-                                className="relative p-2 text-gray-400 hover:text-white transition-colors duration-200 group"
-                            >
-                                <ShoppingCart className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
-                                {cartItemCount > 0 && (
-                                    <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse shadow-lg">
-                                        {cartItemCount}
-                                    </span>
-                                )}
-                            </button>
-
-                            {/* Mobile Menu Button */}
-                            <button
-                                onClick={handleMobileMenuToggle}
-                                className="md:hidden p-2 text-gray-400 hover:text-white transition-colors duration-200"
-                            >
-                                {isMobileMenuOpen ? (
-                                    <X className="h-6 w-6" />
-                                ) : (
-                                    <Menu className="h-6 w-6" />
-                                )}
-                            </button>
-                        </div>
+                        {/* Mobile Menu Button */}
+                        <button
+                            onClick={handleMobileMenuToggle}
+                            className="md:hidden p-2 text-gray-400 hover:text-white transition-colors duration-200"
+                        >
+                            {isMobileMenuOpen ? (
+                                <X className="h-6 w-6" />
+                            ) : (
+                                <Menu className="h-6 w-6" />
+                            )}
+                        </button>
                     </div>
                 </div>
+
+                {/* Mobile Menu */}
+                {isMobileMenuOpen && (
+                    <div className="md:hidden bg-slate-800/95 backdrop-blur-lg border-t border-purple-500/20">
+                        <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                            <Link 
+                                to="/" 
+                                onClick={closeMobileMenu}
+                                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex items-center hover:bg-white/10"
+                            >
+                                <Home className="h-5 w-5 mr-3" />
+                                Inicio
+                            </Link>
+                            
+                            {isAuthenticated ? (
+                                <Link 
+                                    to="/productos" 
+                                    onClick={closeMobileMenu}
+                                    className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex items-center hover:bg-white/10"
+                                >
+                                    <Package className="h-5 w-5 mr-3" />
+                                    Productos
+                                </Link>
+                            ) : (
+                                <button 
+                                    onClick={() => {
+                                        alert("Debes Registrarte e Iniciar Sesión Para Ver Los Productos!");
+                                        closeMobileMenu();
+                                    }}
+                                    className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex items-center hover:bg-white/10 w-full text-left"
+                                >
+                                    <Package className="h-5 w-5 mr-3" />
+                                    Productos
+                                </button>
+                            )}
+                            
+                            <Link 
+                                to="/registro" 
+                                onClick={closeMobileMenu}
+                                className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium flex items-center hover:bg-white/10"
+                            >
+                                <UserPlus className="h-5 w-5 mr-3" />
+                                Registrarse
+                            </Link>
+                            
+                            {!isAuthenticated ? (
+                                <Link 
+                                    to="/login" 
+                                    onClick={closeMobileMenu}
+                                    className="bg-gradient-to-r from-blue-600 to-purple-600 text-white block px-3 py-2 rounded-md text-base font-medium flex items-center mx-3 my-2"
+                                >
+                                    <LoginIcon className="h-5 w-5 mr-3" />
+                                    Iniciar Sesión
+                                </Link>
+                            ) : (
+                                <>
+                                    <div className="px-3 py-2 text-gray-400 text-sm flex items-center">
+                                        {user?.picture && (
+                                            <img
+                                                src={user.picture}
+                                                alt="Foto de perfil"
+                                                className="h-8 w-8 rounded-full border-2 border-white mr-2"
+                                            />
+                                        )}
+                                        {user?.nombre || "Usuario"}
+                                    </div>
+                                    <button 
+                                        onClick={handleLogoutAndRedirect}
+                                        className="bg-gradient-to-r from-red-600 to-pink-600 text-white block px-3 py-2 rounded-md text-base font-medium flex items-center mx-3 my-2"
+                                    >
+                                        <LogOut className="h-5 w-5 mr-3" />
+                                        Cerrar Sesión
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                )}
             </nav>
         </>
     );
