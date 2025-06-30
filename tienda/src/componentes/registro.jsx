@@ -146,8 +146,8 @@ function Registro() {
                         ) : (
                             'Crear Cuenta'
                         )}
-                        <InicioSesionConGoogle/>
                     </button>
+                        <InicioSesionConGoogle/>
 
                     <div className="text-center space-y-4">
                         <p className="text-gray-600">
