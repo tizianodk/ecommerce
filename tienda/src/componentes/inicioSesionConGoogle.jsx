@@ -30,7 +30,6 @@ const InicioSesionConGoogle = () => {
       .then((res) => res.json())
       .then((data) => {
         localStorage.setItem("token", data.token); // Guardar el token en localStorage
-        localStorage.setItem("user", JSON.stringify(data.user)); // Guardar la información del usuario
         
         setIsAuthenticated(true);
         setRol(data.user.rol);
