@@ -134,7 +134,10 @@ function Login({ setIsAuthenticated, setRol }) {
               </>
             )}
           </button>
-            <InicioSesionConGoogle/>
+            <InicioSesionConGoogle
+            setIsAuthenticated={setIsAuthenticated}
+            setRol={setRol}
+            />
         </form>
 
         {message && (
