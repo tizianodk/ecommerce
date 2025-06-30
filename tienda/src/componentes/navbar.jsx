@@ -29,13 +29,6 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
         }
     }, []);
 
-    const handleLogout = () => {
-        // Eliminar la información del usuario y el token al cerrar sesión
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        window.location.href = "/"; // Redirigir al inicio
-    };
-
     const handleOpenModal = (content) => {
         setModalContent(content);
         setShowModal(true);
@@ -47,6 +40,8 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
     };
 
     const handleLogoutAndRedirect = () => {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
         handleLogout();
         navigate("/login");
         setIsMobileMenuOpen(false);
