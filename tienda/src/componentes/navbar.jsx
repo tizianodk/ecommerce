@@ -127,6 +127,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                 <button 
                                     onClick={() => navigate("/carrito")}
                                     className="relative p-2 text-gray-400 hover:text-white transition-colors duration-200 group"
+                                    style={{display:'flex',alignItems:'center'}}
                                 >
                                     <ShoppingCart className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
                                     {cartItemCount > 0 && (
@@ -137,7 +138,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                 </button>
                             </div>
                         </div>
-
+                        
                         {/* Mobile Menu Button */}
                         <button
                             onClick={handleMobileMenuToggle}
@@ -149,6 +150,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                 <Menu className="h-6 w-6" />
                             )}
                         </button>
+                        
                     </div>
                 </div>
 
@@ -224,8 +226,21 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                         <LogOut className="h-5 w-5 mr-3" />
                                         Cerrar Sesión
                                     </button>
-                                </>
+                                </>                              
                             )}
+                             {/* Carrito */}
+                             <button 
+                                    onClick={() => navigate("/carrito")}
+                                    className="relative p-2 text-gray-400 hover:text-white transition-colors duration-200 group"
+                                    style={{display:'flex',alignItems:'center'}}
+                                >
+                                    <ShoppingCart className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+                                    {cartItemCount > 0 && (
+                                        <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse shadow-lg">
+                                            {cartItemCount}
+                                        </span>
+                                    )}
+                                </button>
                         </div>
                     </div>
                 )}
