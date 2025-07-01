@@ -38,7 +38,7 @@ server.use("/resenas", resenasRoutes);
 // Configurar sesiones
 server.use(
   session({
-    secret: process.env.SESSION_SECRET, // Cambiar por una variable de entorno en producción
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -62,11 +62,11 @@ const crearAdminPorDefecto = async () => {
     const adminExistente = await User.findOne({ rol: "admin" });
 
     if (!adminExistente) {
-      const hashedPassword = await bcrypt.hash("admin123", 10); // Contraseña encriptada
+      const hashedPassword = await bcrypt.hash(process.env.CONTRASENA_ADMIN, 10); 
       const admin = new User({
         nombre: "Admin",
         apellido: "Default",
-        email: "admin@tienda.com",
+        email: process.env.CORREO_ADMIN,
         password: hashedPassword,
         rol: "admin",
       });
