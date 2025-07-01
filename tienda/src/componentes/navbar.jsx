@@ -16,6 +16,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [user, setUser] = useState(null);
     const navigate = useNavigate();
+    const cartItemCount = carritoItems?.length || 0;
 
     useEffect(() => {
         const userData = localStorage.getItem("user");
@@ -39,8 +40,6 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
     const closeMobileMenu = () => {
         setIsMobileMenuOpen(false);
     };
-
-    const cartItemCount = carritoItems?.length || 0;
 
     return (
         <>
@@ -124,6 +123,18 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                                         </button>
                                     </div>
                                 )}
+                                {/* Carrito */}
+                                <button 
+                                    onClick={() => navigate("/carrito")}
+                                    className="relative p-2 text-gray-400 hover:text-white transition-colors duration-200 group"
+                                >
+                                    <ShoppingCart className="h-6 w-6 group-hover:scale-110 transition-transform duration-200" />
+                                    {cartItemCount > 0 && (
+                                        <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse shadow-lg">
+                                            {cartItemCount}
+                                        </span>
+                                    )}
+                                </button>
                             </div>
                         </div>
 
