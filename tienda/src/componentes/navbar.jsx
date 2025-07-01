@@ -145,7 +145,7 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                             className="md:hidden p-2 text-gray-400 hover:text-white transition-colors duration-200"
                         >
                             {cartItemCount > 0 && (
-                                        <span className="absolute -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse shadow-lg">
+                                        <span className="absolute -right-0.5 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse shadow-lg">
                                             {cartItemCount}
                                         </span>
                                     )}
