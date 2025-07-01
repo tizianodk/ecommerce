@@ -150,7 +150,7 @@ function Carrito({ carrito, setCarrito }) {
                       {/* Imagen del producto */}
                       <div className="flex-shrink-0">
                         <img
-                          src={`${API_URL}/uploads/${item.imagen}`}
+                          src={item.imagen}
                           alt={item.nombre}
                           className="w-20 h-20 object-cover rounded-lg"
                         />
