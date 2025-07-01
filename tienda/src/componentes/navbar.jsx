@@ -144,11 +144,17 @@ function NavBar({ isAuthenticated, handleLogout, rol, carritoItems }) {
                             onClick={handleMobileMenuToggle}
                             className="md:hidden p-2 text-gray-400 hover:text-white transition-colors duration-200"
                         >
+                            {cartItemCount > 0 && (
+                                        <span className="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold animate-pulse shadow-lg">
+                                            {cartItemCount}
+                                        </span>
+                                    )}
                             {isMobileMenuOpen ? (
                                 <X className="h-6 w-6" />
                             ) : (
                                 <Menu className="h-6 w-6" />
                             )}
+                            
                         </button>
                         
                     </div>
